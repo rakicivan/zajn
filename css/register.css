@@ -1,0 +1,37 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 11, 2016, 9:41:51 AM
+    Author     : Danijel
+*/
+
+#register_step2,
+#register_step3,
+#register_step1,
+#company_registration,
+#registerCompanyStep1,
+#registerCompanyStep2,
+#registerCompanyStep3
+{
+    display:none;;
+}
+
+.wrong
+{
+    border: red 2px solid;
+    -webkit-border: red 2px solid;
+}
+
+.correct
+{
+    border: green 2px solid;
+}
+
+
+.ui-datepicker-year
+{
+    color:black;
+}

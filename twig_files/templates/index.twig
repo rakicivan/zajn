@@ -1,0 +1,71 @@
+{% include 'header.twig' %}
+{% include 'navigation.twig'%}
+<div id="dsokac_file">
+    
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        <div class="left_side_bar">
+            <div class="user_info col-xs-6 col-sm-12">
+                <div class="box">
+                    <div class="box_head">Profil</div>
+                    <div class="user_avatar">
+                        <img class="img-circle center-block" src="{{get_user_info.user_avatar}}" />
+                    </div>
+                    <div class="user_name">
+                        {{get_user_info.name}} {{get_user_info.surname}}
+                    </div>
+                </div>
+            </div>
+            <div class="left_side_bar_nav col-xs-6 col-sm-12">
+                <div class="box">
+                    <ul class="list-unstyled">
+                        <li><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"> </span> Skripte</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-calendar" aria-hidden="true"> </span></a> Događaji</li>
+    {#                    <li><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Grupe</a></li>#}
+                        <li><a href="#"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"> </span> Oglasi</a></li>
+                    </ul>
+                    <ul class="list-unstyled">
+                        <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"> </span> Pozovi kolege</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-record" aria-hidden="true"> </span> Moja grupa</a></li>
+    {#                    <li><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Grupe</a></li>#}
+                        <li><a href="#"><span class="glyphicon glyphicon-tags" aria-hidden="true"> </span> Popusti</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        {% include 'post_textarea.twig'%}
+        <div class="row" id="posts_container" data-p-l=10 data-p-of=0>
+            {% for element in get_wall_posts %}
+                {% include 'post.twig' with {
+                    "user_avatar": element.user_avatar,
+                    "post_ID": element.post_ID,
+                    "author_name": element.author_name,
+                    "author_surname": element.author_surname,
+                    "text": element.text,
+                    "time": element.time,
+                    "likes": element.likes
+                }%}
+            {% endfor %}
+            <div class="l_m"><span id="load_more">Učitaj više</span></div>
+        </div>
+    </div>
+    <div class="col-sm-3 right_sidenav">
+        <div class="box">
+            {% for elements in get_ppl_u_may_know %}
+                {% include 'ppl_u_may_know_widget.twig' with {
+                    "user_avatar": elements.user_avatar,
+                    "user_ID": elements.user_ID,
+                    "user_name": elements.name,
+                    "user_surname": elements.surname
+                }%}
+            {% endfor %}
+        </div>
+        
+        <div class="box">
+            <p>Oglasi</p>
+        </div>
+    </div>
+</div>

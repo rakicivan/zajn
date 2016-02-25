@@ -1,0 +1,96 @@
+{# empty Twig template #}
+
+                <div id="student_type">
+                    <input type="radio" name="full_time_student" value="1"> Redovni
+                    <input type="radio" name="full_time_student" value="0"> Izvanredni
+                </div>
+                <div id="register_step1">
+                    <div>
+                        <input class="" type="text" placeholder=class"" name="id" id="id" />
+                        <span id="idMessage"></span>
+                    </div>
+                    <div>
+                        <input class="" type="text" placeholder="Unesi broj mobitela" name="mobile" id="mobile"  />
+                        <span id="mobileMessage"></span>
+                    </div>
+                    <div>
+                        <button type="button" disabled="disabled" id="btnStep1">DALJE</button>
+                        <span id="part1_form"></span>
+                    </div>
+                </div>
+                <div id="register_step2">
+                    <div>
+                        {% include 'registration.select.twig' with {'select_id':'registerCity','array': cities,'select_default_text':'Grad studija'} %}
+                    </div>
+                    <div>
+                        {% include 'registration.select.twig' with {'select_id':'registerUniversity','array': universities,'select_default_text':'Visoko učilište'} %}
+                    </div>
+                    <div>
+                        {% include 'registration.select.twig' with {'select_id':'registerCollege','array': colleges,'select_default_text':'Fakultet'} %}
+                    </div>
+                    <div>
+                        <input type="email" placeholder="Unesi e-mail adresu" name="email" id="email" />
+                        <span id="emailMessage"></span>
+                    </div>
+                    <div>
+                        {% include 'registration.select.twig' with {'select_id':'registerStudyType','array': study_types,'select_default_text':'Vrsta studija'} %}
+                    </div>
+                    <div>
+                        {% include 'registration.select.twig' with {'select_id':'registerSubject','array': subjects,'select_default_text':'Smjer'} %}
+                    </div>
+                    <div>
+                        {% include 'registration.select.twig' with {'select_id':'registerYears','array': years,'select_default_text':'Godina studija'} %}
+                    </div>
+                    <div>
+                        {% include 'registration.select.twig' with {'select_id':'registerHomecity','array': cities,'select_default_text':'Dolazim iz'} %}
+                    </div>
+                    <div>
+                        {% include 'registration.select.twig' with {'select_id':'registerDorm','array': dorms,'select_default_text':'Studentski dom'} %}
+                    </div>
+                    <div>
+                        <button type="button" disabled="disabled" id="btnStep2">DALJE</button>
+                    </div>
+
+                </div>
+                <div id="register_step3">
+                        <div>
+                            <input type="text" id="birthDate" name="birthDate" placeholder="Datum rođenja" />
+                            <input type="text" id="birthDateReal" name="birthDateReal" hidden="hidden" />
+                            <span id="birthDateMessage"></span>
+                        </div>
+                        <div>
+                            <select id="gender" name="gender">
+                                <option value=-1>Spol</option>
+                                <option value="M">Muški</option>
+                                <option value="Z">Ženski</option>
+                            </select>
+                            <span id="genderMessage"></span>
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Ime" name="name" id="name" />
+                            <span id="nameMessage"></span>
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Prezime" name="surname" id="surname" />
+                            <span id="surnameMessage"></span>
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Tajna riječ" name="secret" id="secret" />
+                            <span id="secretMessage"></span>
+                        </div>
+                        <div>
+                            <input type="password" placeholder="Lozinka" name="password" id="password" />
+                            <span id="passwordMessage"></span>
+                        </div>
+                        <div>
+                            <input type="password" placeholder="Ponovi lozinku" name="confirmation" id="confirmation" />
+                            <span id="confirmationMessage"></span>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="conditions" id="conditions" /> Prihvaćam uvjete korištenja
+                            <span id="conditionsMessage"></span>
+                        </div>
+                        <div>
+                            <input type="submit" value="REGISTRACIJA" />
+                        </div>
+                    </div>

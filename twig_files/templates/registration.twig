@@ -1,0 +1,24 @@
+{# empty Twig template #}
+{% include 'header.twig' %}
+{% include 'navigation.twig' %}
+<h1>Student registration</h1>
+        <div>
+            {% for message in messages %}
+                <p>{{message}}</p>    
+            {% endfor %}
+        </div>
+        
+        <form method="post" action="register.php" id="frmRegister">
+            <div id="register_type">
+            <input type="radio" name="register_type" id="register_type_student" checked="checked" value="1"> Student
+            <input type="radio" name="register_type" id="register_type_company" value="0"> Tvrtka
+        </div>
+            <hr/>
+            <div id="student_registration">
+                {% include 'registration.student.twig' %}
+            </div>
+            <div id="company_registration">
+                {% include 'registration.company.twig' %}
+            </div>
+        </form>
+{% include 'footer.twig' %}

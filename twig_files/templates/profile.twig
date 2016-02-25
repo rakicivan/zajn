@@ -1,0 +1,28 @@
+{# empty Twig template #}
+{% include 'navigation.twig'%}
+{% include 'header.twig' %}
+        <h1>{{title}}</h1>
+        <p>User info</p>
+        <div>
+            Email: {{user_info.email}}</br>
+            lozinka: {{user_info.password}}</br>
+            university: {{user_info.university}}</br>
+            collegeName: {{user_info.collegeName}}</br>
+            cityName: {{user_info.cityName}}</br>
+            subjectName: {{user_info.subjectName}}</br>
+            dormName: {{user_info.dormName}}</br>
+            tosName: {{user_info.tosName}}</br>
+            universitieName: {{user_info.universitieName}}</br></br>
+        </div>
+        <p>Posts</p>
+	<div id="posts_container">
+            {% for element in get_posts %}
+                {% include 'post.twig' with {
+                    "post_ID": element.post_ID,
+                    "author_name": element.author_name,
+                    "text": element.text,
+                    "time": element.likes
+                }%}
+            {% endfor %}
+        </div>
+{% include 'footer.twig' %}

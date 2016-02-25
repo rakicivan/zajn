@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteRule ^/?$ index.php [NC,L]
+RewriteRule ^registracija/?$ register.php [NC,L]
+
+#RewriteRule    ^([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$    get_blog_post_by_title.php?category_name=$1&post_title=
+            #http://www.pets.com/categoty/post/
+
+#RewriteRule    ^products/([0-9]+)/?$    show_a_product.php?product_id=$1    [NC,L]   http://www.pets.com/show_a_product.php?product_id=7 => http://www.pets.com/products/7/

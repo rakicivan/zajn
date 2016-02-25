@@ -1,0 +1,66 @@
+{# empty Twig template #}
+<div id="registerCompanyStep1">
+    <div>
+        <input type="text" id="registerCompanyName" name="registerCompanyName" placeholder="Naziv tvrtke" />
+        <span id="registerCompanyNameMessage"></span>
+    </div>
+    <div>
+        <input type="text" id="registerCompanyID" name="registerCompanyID" placeholder="OIB tvrtke" />
+        <span id="registerCompanyIDMessage"></span>
+    </div>
+    <div>
+        {% include 'registration.select.twig' with {'select_id':'registerCompanyCity','array': cities,'select_default_text':'Grad - sjedište tvrtke'} %}
+    </div>
+    <div>
+        <textarea id="registerCompanyAddress" name="registerCompanyAddress" placeholder="Adresa - ulica i broj" style="resize: none;"></textarea>
+        <span id="registerCompanyAddressMessage"></span>
+    </div>
+    <div>
+        <button type="button" id="btnRegisterCompanyStep1" disabled="disabled">DALJE</button>
+    </div>
+</div>
+<div id="registerCompanyStep2">
+    <div>
+        <input type="text" id="registerCompanyPostalCode" name="registerCompanyPostalCode" placeholder="Poštanski broj" />
+        <span id="registerCompanyPostalCodeMessage"></span>
+    </div>
+    <div>
+        {% include 'registration.select.twig' with {'select_id':'registerCompanyTribalState','array': tribal_states,'select_default_text':'Županija'} %}
+    </div>
+    <div>
+        <input type="email" id="registerCompanyEmail" name="registerCompanyEmail" placeholder="Email tvrtke" />
+        <span id="registerCompanyEmailMessage"></span>
+    </div>
+    <div>
+        <input type="text" id="registerCompanyPhone" name="registerCompanyPhone" placeholder="Kontakt telefon" />
+        <span id="registerCompanyPhoneMessage"></span>
+    </div>
+    <div>
+        <input type="text" id="registerCompanyFax" name="registerCompanyFax" placeholder="Fax" />
+        <span id="registerCompanyFaxMessage"></span>
+    </div>
+    <div>
+        <input type="text" id="registerCompanyPerson" name="registerCompanyPerson" placeholder="Kontakt osoba" />
+        <span id="registerCompanyPersonMessage"></span>
+    </div>
+    <div>
+        <button type="button" disabled="disabled" id="btnRegisterCompanyStep2">DALJE</button>
+    </div>
+</div>
+<div id="registerCompanyStep3">
+    <div>
+        <input type="password" placeholder="Lozinka" name="registerCompanyPassword" id="registerCompanyPassword" />
+        <span id="registerCompanyPasswordMessage"></span>
+    </div>
+    <div>
+        <input type="password" placeholder="Ponovi lozinku" name="registerCompanyConfirmation" id="registerCompanyConfirmation" />
+        <span id="registerCompanyConfirmationMessage"></span>
+    </div>
+    <div>
+        <input type="checkbox" name="registerCompanyConditions" id="registerCompanyConditions" /> Prihvaćam uvjete korištenja
+        <span id="registerCompanyConditionsMessage"></span>
+    </div>
+    <div>
+        <input disabled="disabled" id="btnRegisterCompany" type="submit" value="REGISTRACIJA" />
+    </div>
+</div>

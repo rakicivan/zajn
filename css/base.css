@@ -1,0 +1,206 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 11, 2016, 9:41:51 AM
+    Author     : Ivan
+*/
+body{
+    background-color: #21223e;
+    color: #E2E2E2;
+    font-family: 'Ubuntu', sans-serif; 
+}
+textarea {
+    background-color: #50597B;
+    color: #E2E2E2;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    width: 100%;
+    overflow: overlay;
+    min-height: 3em;
+    height: 0;
+    position: relative;
+    outline: 0px;
+    background: transparent;
+    resize: none;
+    box-shadow: none;
+    font-weight: 300;
+    padding: 10px;
+}
+.post_comment_textarea_container textarea {
+    width: 100%;
+}
+#posts_container{
+    /*width: 500px;*/
+}
+#post{
+    padding: 10px;
+}
+.post .user_avatar img{
+    width: 50px;
+    margin: 5px;
+}
+.del_post, .del_comm{
+    float: right;
+}
+.del_post:hover, .del_comm:hover{
+    cursor: pointer;
+}
+.comments{
+    margin: 5px;
+    padding: 10px;
+    /*border: 1px solid red*/
+    background-color: #50597B;
+
+}
+.c_container{
+    margin: 5px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    border-radius: 4px 4px 4px 4px;
+    /*border: 1px solid blue*/
+}
+.post_comments_container{
+    display:none;
+}
+.post_comment_textarea_container{
+    display:none;
+    margin: 5px;
+}
+.l_m{
+    background-color: gray;
+    padding: 15px;    
+
+}
+#load_more{
+    margin: 0 auto;
+    cursor: pointer;
+}
+.load_post_comments{
+    width: 100px;
+    margin: 0 auto;
+}
+.load_post_comments span{
+    color: #E2E2E2;
+    cursor: pointer;
+}
+.user_info{
+    text-align: center
+}
+.user_name{
+    margin: 5px;
+    font-size: 1.5em
+}
+.left_side_bar_nav a{
+    text-align: center;
+    color: #E2E2E2;
+}
+.box{
+    background-color: #394264;
+    margin: 5px;
+    width: auto;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    border-radius: 4px 4px 4px 4px;
+    overflow: hidden;
+}
+.box_head{
+    background-color: #11A8AB;
+    height: 40px;
+    width: 100%;
+    margin: 0 0 10px 0;
+    -webkit-border-radius: 4px 4px 0px 0px;
+    border-radius: 4px 4px 0px 0px;
+    font-size: 1.5em;
+    padding-top: 5px;
+}
+.left_side_bar_nav ul{
+    padding: 10px 30px;
+    margin: 0;
+    overflow: hidden;
+}
+.left_side_bar_nav li{
+    /*margin: 5px;*/
+    font-size: 1em;
+}
+.left_side_bar_nav li:hover{
+    background-color: rgba(33, 34, 62, 0.29);
+}
+#submit_post{
+    background-color: #11A8AB;
+    font-size: 1.2em;
+    border: 0;
+    padding: 5px 10px 5px 10px;
+    -webkit-border-radius: 0px 0px 4px 4px;
+    border-radius: 0px 0px 4px 4px;
+    float: right;
+    
+}
+#post_form{
+    margin: 5px;
+}
+.post_form_btns{
+    display:inline-block;
+    overflow: auto;
+    white-space: nowrap;
+    margin:0px auto;
+    margin-top: -5px;
+}
+#post_textarea{
+    
+}
+
+
+/* Login */
+.login_page{
+    height: 100%;
+    width: 100%;
+    overflow:hidden;
+    background-color: hsla(238, 31%, 19%, 0.85);
+}
+
+.login_form {
+    background-color: #394165;
+    opacity: 0.8;
+    padding: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 280px;
+    color: #ccc;
+}
+
+.login_form .formLogo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login_form .formLine{
+    height: 0;
+    border: 1px solid #ccc;
+}
+
+.login_form .loginBox{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background: transparent;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+}
+
+.login_form button{
+    margin-top: 20px;
+}
+
+.login_form .formInput button{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 60px;
+    padding-right: 60px;
+    
+}

@@ -1,0 +1,18 @@
+<div id="post_comment_textarea_container">
+    <p>Budi prvi koji će komentirati</p>
+    <form>
+        <input type="text" class="post_comment_textarea" />
+    </form>
+</div>
+<script>
+    $("input").keypress(function (e) {
+        var val = $(this).val();
+        if(e.which == 13) {
+
+            e.preventDefault();
+            $(this).val("").hide();
+            
+            alert(val);
+        }
+    });
+</script>
