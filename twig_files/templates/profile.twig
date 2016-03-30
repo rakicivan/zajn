@@ -2,45 +2,47 @@
 <div id="dsokac_file">
     
 </div>
-<div class="row">
+<div class="row profile-main">
     <div class="profile_cover">
-        <img class="img-responsive" {#src="{{base_url}}/page_imgs/ivan-profile-pic.jpg"#}/> 
+        
         <div class="profile_floater">
-            <div class="user_avatar">
+            <div class="user_avatar_profile">
+
                 <img id="indexPicture" class="img-circle center-block" src="{{base_url}}/{{get_user_info.user_avatar}}" />
-                <div class="profileChanger">
-                                    Promijeni sliku
+                <div class="profileChanger center-block">
+                                    <span><i class="fa fa-pencil"></i> Izmjeni sliku </span>
                 </div>
+				
             </div>
             <div class="user_name">
-                {{get_user_info.name}} {{get_user_info.surname}}
+                <h2 class="name-profile">{{get_user_info.name}} {{get_user_info.surname}}</h2>
+				<h4 class="college_name_profile">{{get_user_info.collegeName}}</h4>
             </div>
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-sm-3">
+<div class="container-fluid">
+    <div class="col-md-3">
         <div class="row left_side_bar">
             <div class="col-xs-12">
                 <div class="row">
                     <div class="box">
                         <div class="box_head">Informacije</div>
-                        <div class="user_info">
+                        <div class="user_info profile_info">
                             PROBNO<br/><br/>
-                            Email: {{get_user_info.email}}</br>
-                            lozinka: {{get_user_info.password}}</br>
-                            university: {{get_user_info.university}}</br>
-                            collegeName: {{get_user_info.collegeName}}</br>
-                            cityName: {{get_user_info.cityName}}</br>
-                            subjectName: {{get_user_info.subjectName}}</br>
-                            dormName: {{get_user_info.dormName}}</br>
-                            tosName: {{get_user_info.tosName}}</br>
-                            universitieName: {{get_user_info.universitieName}}</br></br>
+                            <strong>Email:</strong> {{get_user_info.email}}</br>
+                            
+                            <strong>Fakultet:</strong> {{get_user_info.collegeName}}</br>
+                            <strong>Grad:</strong> {{get_user_info.cityName}}</br>
+                            <strong>Smjer:</strong> {{get_user_info.subjectName}}</br>
+                            <strong>dormName:</strong> {{get_user_info.dormName}}</br>
+                            <strong>Studij:</strong> {{get_user_info.tosName}}</br>
+                            <strong>Ustanova:</strong> {{get_user_info.universitieName}}</br></br>
                         </div>
                     </div>
                 </div>
             </div>
-            {#<div class="left_side_bar_nav col-xs-12">
+            {#<div class="left_side_bar_nav col-md-12">
                 <div class="row">
                     <div class="box">
                         <ul class="list-unstyled">
@@ -57,7 +59,7 @@
             </div>#}
         </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-md-6">
         {% if answered_request == 0 and areFriends == 0 and did_i_request_friendship == 0%}
         <div id="askProfile" class="row">
             <div class="col-sm-6">
@@ -68,20 +70,17 @@
                 <button data="{{profileID}}" id="btnDeclineProfile" type="button" class="btn btn-default">Odbij</button>
             </div>
         </div>
-        {% elseif not_my_profile == 1 and areFriends == 0 and answered_request == 1 %}
+        {% endif %}
+        {% if not_my_profile == 1 and areFriends == 0 and answered_request == 1 %}
             <div id="addProfile" class="row">
                 <div class="col-sm-12">
                     <button data="{{profileID}}" id="btnAddFriendProfile" type="button" class="btn btn-primary">Dodaj za prijatelja</button>
                 </div>
             </div>
-        {% elseif not_my_profile == 1 %}
+        {% elseif not_my_profile == 1 and areFriends == 1 %}
             <div id="removeProfile" class="row">
                 <div class="col-sm-12">
-                {% if areFriends == 0 %}
-                    <button data="{{profileID}}" id="btnRemoveFriendProfile" type="button" class="btn btn-default">Otkaži zahtjev</button>
-                {% else %}
                     <button data="{{profileID}}" id="btnRemoveFriendProfile" type="button" class="btn btn-default">Prekini prijateljstvo</button>
-                {% endif %}
                 </div>
             </div>
         {% endif %}
@@ -100,18 +99,12 @@
                 }%}
             {% endfor %}
             {% if attribute(get_wall_posts, 0).count_posts >= 10 %}<div class="l_m text-center"><span id="load_more" class="">Učitaj više</span></div>{% endif %}
-            {% if attribute(get_wall_posts, 0).count_posts == 0 %}
-                {% if areFriends == 0 and not_my_profile == 1 %}
-                    <div class="l_m text-center"><span>Ovaj student objave dijeli samo sa prijateljima!</span></div>
-                {% else %}
-                    <div class="l_m text-center"><span>Nema objava</span></div>
-                {% endif %}
-            {% endif %}
+            {% if attribute(get_wall_posts, 0).count_posts == 0 %}<div class="l_m text-center"><span>Nema objava</span></div>{% endif %}
         </div>
     </div>
-    <div class="col-sm-3 right_sidenav">
+    <div class="col-md-3 right_sidenav">
         <div class="row">
-            <div class="col-xs-6 col-sm-12">
+            <div class="col-xs-12 col-sm-12">
                 <div class="row">
                     <div class="box">
                         <div class="box_head">Prijatelji</div>
