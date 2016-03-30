@@ -35,3 +35,14 @@ and open the template in the editor.
 {
     color:black;
 }
+
+.regGroup{
+	background-color:#3b4367;
+	padding-top: 2em;
+	padding-bottom: 2em;
+	border-radius: 1em;
+}
+
+.centerText{
+	text-align: center;
+}

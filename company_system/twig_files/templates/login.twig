@@ -1,0 +1,27 @@
+{# empty Twig template #}
+{% include 'header.twig'%}
+{% include 'navigation.twig'%}
+<div {% if messages is not empty %}class="alert alert-danger"{%endif%}>
+    {% for message in messages %}
+        <p>{{message}}</p>
+    {%endfor%}
+</div>
+<form method="post" id="companysystem-frmLogin" accept-charset="utf-8" action="login.php">
+    <div>
+        <input type="text" id="companysystem-email" name="companysystem-email" />
+        <span id="companysystem-email-message"></span>
+    </div>
+    <div>
+        <input type="password" id="companysystem-password" name="companysystem-passwrod" />
+        <span id="companysystem-password-message"></span>
+    </div>
+    <div>
+        <input type="checkbox" id="companysystem-rememberME" name="companysystem-rememberME" />Zapamti me
+        <span id="companysystem-rememberME-message"></span>
+    </div>
+    <div>
+        <input type="submit" value="Prijavite se" id="companysystem-btnLogin" />
+    </div>
+</form>
+
+{% include 'footer.twig'%}

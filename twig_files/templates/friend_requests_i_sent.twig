@@ -1,0 +1,8 @@
+{% for request in requests_i_sent %}
+    <div class="friendRequestItem row" style="margin-bottom: 10px;">
+        <div class="col-sm-8">
+            <a href="{{base_url}}/profile.php?id={{request.user_ID}}"><img style="margin-right:10px;" alt="profilna" src="{{base_url}}/{{request.profile_picture}}" />{{request.name}} {{request.surname}}</a> ste dodali za prijatelja.
+        </div>
+        <div class="col-sm-4">Čeka na odgovor</div>
+    </div>   
+{%endfor%}

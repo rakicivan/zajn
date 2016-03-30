@@ -1,0 +1,19 @@
+<div class="login_page">
+        <div class="login_form">
+        <img class="formLogo" src="page_imgs/mini_logo_v2_2.png" alt="logo">
+		<form method="POST" action="login.php" name="login">
+                    <div>
+                        <input type="radio" name="login_type" checked="checked" /> <b class="radioText">Student</b>&nbsp;
+                        <input type="radio" name="login_type" /> <b class="radioText">Tvrtka</b>
+                    </div>
+                    <hr class="formLine"/>
+                    <div class="formInput"><label for="username"></label><input type="text" class="loginBox" id="username" name="username" placeholder="E-mail ili broj mobitela" autofocus="autofocus" required="" value="{{remember}}">
+		            <label for="password"></label><input type="password" class="loginBox" id="password" name="password" placeholder="Lozinka" required=""/><br/>
+                            <label for="remember" class="radioText">Zapamti me</label>&nbsp;<input type="checkbox" name="remember_user" /> <br />
+		            <button type="submit" class="btn btn-primary btn-lg active" name="login_submit">Prijava</button>
+                    </div>
+                </form>
+                            <div>{{ login_message }} </br> {{ivra_cookie}}</div>
+
+      </div>
+      </div>

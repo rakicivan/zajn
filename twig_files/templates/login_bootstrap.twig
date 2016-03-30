@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-12 centerText">
+                <span class="h1">Prijava</span>
+                <hr/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <form method="POST" action="entry.php" name="login">
+                    <input hidden="hidden" type="text" value="0" name="isRegistration" />
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <label><input type="radio" name="login_type" checked="checked" /> <span>Student</span></label>
+                        </div> 
+                        <div class="col-lg-6">
+                            <label><input type="radio" name="login_type" /> <span>Tvrtka</span></label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="E-mail ili broj mobitela" autofocus="autofocus" required="" value="{{remember}}">
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Lozinka" required="" autocomplete="off"/>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-12 checkbox">
+                            <label>
+                                <input type="checkbox" name="remember_user"{#{% if not check_cookie %}disabled="disabled"{%endif%}#} />Zapamti me
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <button type="submit" class="btn btn-primary btn-lg active" name="login_submit">Prijava</button>
+                        </div>                  
+                    </div>
+                </form>        
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-12">{{ login_message }}</div>
+                    <div class="col-lg-12">{{ivra_cookie}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

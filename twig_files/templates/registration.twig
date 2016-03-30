@@ -1,24 +1,29 @@
-{# empty Twig template #}
-{% include 'header.twig' %}
-{% include 'navigation.twig' %}
-<h1>Student registration</h1>
-        <div>
-            {% for message in messages %}
-                <p>{{message}}</p>    
-            {% endfor %}
-        </div>
+{% include 'header_entry.twig' %}
+<div class="register_page">
+    <div class="registerPageBackground">
+        <div class="registerForm">
+        <img class="formLogo" src="page_imgs/mini_logo_v2_2.png" alt="logo">
+            <div>
+                {% for message in messages %}
+                    <p>{{message}}</p>    
+                {% endfor %}
+            </div>
         
-        <form method="post" action="register.php" id="frmRegister">
-            <div id="register_type">
-            <input type="radio" name="register_type" id="register_type_student" checked="checked" value="1"> Student
-            <input type="radio" name="register_type" id="register_type_company" value="0"> Tvrtka
+            <form method="post" action="entry.php" id="frmRegister">
+                <input hidden="hidden" value="1" name="isRegistration" />
+                <div id="register_type">
+                <input type="radio" name="register_type" id="register_type_student" checked="checked" value="1"> <b class="radioText">Student</b>&nbsp;
+                <input type="radio" name="register_type" id="register_type_company" value="0"> <b class="radioText">Tvrtka</b>
+                </div>
+                <hr class="formLine"/>
+                <div id="student_registration">
+                    {% include 'registration.student.twig' %}
+                </div>
+                <div id="company_registration">
+                    {% include 'registration.company.twig' %}
+                </div>
+            </form>
         </div>
-            <hr/>
-            <div id="student_registration">
-                {% include 'registration.student.twig' %}
-            </div>
-            <div id="company_registration">
-                {% include 'registration.company.twig' %}
-            </div>
-        </form>
-{% include 'footer.twig' %}
+    </div>
+</div>
+{% include 'footer_entry.twig' %}

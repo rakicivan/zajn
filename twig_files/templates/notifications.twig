@@ -1,0 +1,13 @@
+{% for request in array %}
+<li style="margin-bottom: 3px;" class="frendRequestItem">
+    <a style="padding:5px;" href="profile.php?id={{request.user_ID}}&req={{request.req}}">{{request.name}} {{request.surname}}</a>
+    <div>
+        <button data="{{request.user_ID}}" type="button" class="btn btn-primary btn-sm acceptRequest">Prihvati</button>
+        <button data="{{request.user_ID}}" type="button" class="btn btn-default btn-sm declineRequest">Odbij</button>
+    </div>
+</li>
+{% else %}
+    <li>Nemate zahtjeva.</li>
+{% endfor %}
+<li class="divider"></li>
+<li><a href="{{base_url}}/zahtjevi">Prikaži više</a></li>

@@ -1,0 +1,11 @@
+{% for request in requests_for_me %}
+    <div class="friendRequestItem row" style="margin-bottom: 10px;">
+        <div class="col-sm-8">
+            <a href="{{base_url}}/profile.php?id={{request.user_ID}}"><img style="margin-right:10px;" alt="profilna" src="{{base_url}}/{{request.profile_picture}}" />{{request.name}} {{request.surname}}</a> vas želi dodati za prijatelja.
+        </div>
+        <div class="col-sm-4">
+            <button  data="{{request.user_ID}}" type="button" class="btnAcceptFriendPage btn btn-primary">Prihvati</button>
+            <button data="{{request.user_ID}}" type="button" class="btnDeclineFriendPage btn btn-default">Odbij</button>
+        </div>
+    </div>   
+{%endfor%}

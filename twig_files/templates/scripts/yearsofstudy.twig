@@ -1,0 +1,8 @@
+{% if student_year > 0%}
+    <option disabled selected>Godina studija</option>
+	{% for year in 1..student_year %}
+		<option ID = "year_{{year}}" value = "{{year}}">{{year}}. godina</option>
+	{% endfor %}
+{% else %}
+    <option disabled selected>Ovaj odsjek nema godine studija</option>
+{% endif %}

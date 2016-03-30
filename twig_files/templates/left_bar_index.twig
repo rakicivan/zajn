@@ -1,0 +1,25 @@
+<div class="leftSidebar">
+    <div class="sidebarBlock">
+        <div class="center">
+            <img class="myProfilePic" src="page_imgs/default.jpg" alt="profile picture">
+            <h3 class="myName"> {{get_user_info.name}} {{get_user_info.surname}}</h3>
+        </div>
+    </div>
+   
+    <div class="sidebarMenu" id = "script_menu"> 
+        {% if is_admin %}
+            <i class="glyphicon glyphicon-paperclip"></i> Skripte
+            <ul style = "display:none;">
+                <a href = "{{base_url}}/skripte"><li>Pregled skripti</li></a>
+                <a href = "{{base_url}}/administracija_predmeti"><li>Administracija predmeta</li></a>
+                <a href = "{{base_url}}/administracija_skripte"><li>Administracija skripti</li></a>
+            </ul>
+        {% else %}
+            <a href = "{{base_url}}/skripte"><i class="glyphicon glyphicon-paperclip"></i> Skripte</a>
+        {% endif %}
+    </div>
+
+    <a href="{{base_url}}/pozovi"><div class="sidebarMenu"> <i class="glyphicon glyphicon-eur"></i> Pozovi kolege</div></a>
+    <a href="{{base_url}}/grupe"><div class="sidebarMenu"> <i class="glyphicon glyphicon-education"></i> Grupe</div></a>
+    <a href="{{base_url}}/popusti"><div class="sidebarMenu"> <i class="glyphicon glyphicon-tags"></i> Popusti</div></a>
+</div>

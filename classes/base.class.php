@@ -36,14 +36,22 @@ class Base
         $this->connect();
         $result = $this->connection->query($query);
         $this->last_id = mysqli_insert_id($this->connection);
+        $aff_rows = $this->connection->affected_rows;
         echo $this->displayError();
         $this->disconnect();
         if($command == "UPDATE" || $command == "INSERT" || $command == "DEL"){
-            if($result == "true"){
-                return $this->last_id;
-            }else{
-                return $result;
+            if($result == 1){
+               if($command == "INSERT") {return $this->last_id;}
+               else {return $result;}
+       // if($command == "UPDATE" || $command == "INSERT"){
+       //     if($result == "true"){
+       //         return $this->last_id;
+       //     }else{
+       //         return $result;
             }
+        }
+        elseif ($command == "DEL") {
+            return $aff_rows;
         }
         else return $this->getResults($result);
     }
@@ -52,7 +60,7 @@ class Base
     {
         $array = array();
     
-        while($rows = $results->fetch_array())
+        while($rows = $results->fetch_assoc())
         {
             array_push($array,$rows);   
         }       
@@ -61,7 +69,7 @@ class Base
 
     public function check_cookie(){
 
-        setcookie("ivra_cookie_test","test", time() + 5);
+        setcookie("ivra_cookie_test","test", time() + 500);
 
         if(!isset($_COOKIE['ivra_cookie_test']))
             return false;
@@ -71,7 +79,7 @@ class Base
 
     public function set_cookie($name, $data, $time){
 
-        setcookie($name, $data, time() + ($time));
+        setcookie($name, $data, time() + ($time),"","", true, true);        
     }
 
     public function unset_cookie($name){
@@ -94,16 +102,42 @@ class Base
         $key = pack("H*", "bcb04b7e103a0cd8b54763051cef08bc55abe029faebae5e1d417e2ffb2a00a3");
         $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_ECB);
         $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
-        $crypttext = mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $data, MCRYPT_MODE_ECB, $iv);
-        return base64_encode($crypttext);
+        $crypt_text = mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $data, MCRYPT_MODE_ECB, $iv);
+//        $crypttext = pack("h" ,$crypt_text);
+        return bin2hex($crypt_text);
     }
     
     public function decrypt($data){
-        $data = base64_decode($data);
-        $key = pack("H*", "bcb04b7e103a0cd8b54763051cef08bc55abe029faebae5e1d417e2ffb2a00a3");
-        $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_ECB);
-        $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
-        $decrypttext = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key, $data, MCRYPT_MODE_ECB, $iv);
-        return $decrypttext;
+        
+//        echo "<br>strlen(id): ".strlen($data)."; desired lenght 32!";
+        if(strlen($data) === 0 || strlen($data) < 32){
+            return 0;
+        }else{
+            $crypted_data = hex2bin($data);
+            $key = pack("H*", "bcb04b7e103a0cd8b54763051cef08bc55abe029faebae5e1d417e2ffb2a00a3");
+            $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_ECB);
+            $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
+            $decrypttext = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key, $crypted_data, MCRYPT_MODE_ECB, $iv);
+            return $decrypttext;
+        }
     }
+    public function getBaseUrl($withoutURL = false) 
+{
+	// output: /myproject/index.php
+	$currentPath = $_SERVER['PHP_SELF']; 
+	
+	// output: Array ( [dirname] => /myproject [basename] => index.php [extension] => php [filename] => index ) 
+	$pathInfo = pathinfo($currentPath); 
+	
+	// output: localhost
+	$hostName = $_SERVER['HTTP_HOST']; 
+	
+	// output: http://
+    $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5))=='https://'?'https://':'http://';
+	
+	// return: http://localhost/myproject/
+	
+    if($withoutURL) return $pathInfo['dirname'];
+    else return $protocol.$hostName.$pathInfo['dirname'];
+}
 }

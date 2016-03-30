@@ -1,13 +1,15 @@
-<div class="box" id="post" data={{post_ID}}>
-    <span class="del_post">X</span>
+<div class="box" id="post" data={{post_ID}} data-a={{user_ID}}>
+    <div class="row">
+        {% if not not_my_profile %}<button type="button" class="close del_post"><span aria-hidden="true">&times;</span></button>{% endif %}
+    </div>
     <div class="row">
         <div class="col-sm-2">
-            <div class="user_avatar"><img class="center-block img-circle" src="{{user_avatar}}" /></div>
+            <div class="user_avatar"><a href="{{base_url}}/profile.php?id={{user_ID}}"><img class="center-block img-circle" src="{{base_url}}/{{user_avatar}}" /></a></div>
         </div>
         <div class="col-sm-10">
-            <div class="post_author_name">{{author_name}} {{author_surname}}</div>
+            <div class="post_author_name"><a href="{{base_url}}/profile.php?id={{user_ID}}">{{author_name}} {{author_surname}}</a></div>
             <div class="post_text"><pre>{{text}}</pre></div>
-            <div class="post_time">{{time}}</div>
+            <a href = "{{base_url}}/profile.php?id={{user_ID}}d66f72f9c9df46ff60a84f91fbccd321&post={{post_ID}}"><div class="post_time">{{time}}</div></a>
         </div>
     </div>
     <div class="row">
@@ -20,7 +22,15 @@
                     <textarea class="post_comment_textarea" placeholder="Napiši komentar..."></textarea>
                 </form>
             </div>
-            <div class="load_post_comments"><span>Load comms</span></div>
+            <div class="load_post_comments"><span>
+                    {% if numb_of_comms == 0 %}
+                        0 komentara
+                    {% elseif numb_of_comms == 1 %}
+                        1 komentar
+                    {% elseif numb_of_comms > 1 %}
+                        {{numb_of_comms}} komentara
+                    {% endif %}
+    </span></div>
         </div>
     </div>
 </div>

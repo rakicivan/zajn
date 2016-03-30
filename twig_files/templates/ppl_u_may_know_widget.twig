@@ -1,8 +1,19 @@
-<div class="pumk">
-    <div class="user_avatar">
-        <img class="img-circle" src="{{user_avatar}}" />
+<div class="row widget">
+    <div class="col-xs-4">
+        <div class="row">
+            <div class="user_avatar">
+                <a href="{{base_url}}/profile.php?id={{user_ID}}"><img class="img-circle center-block" src="{{user_avatar}}" /></a>
+            </div>
+        </div>
     </div>
-    <div class="pumk_name">
-        {{user_name}} {{user_surname}}
+    <div class="col-xs-8">
+        <div class="row">
+            <div class="widget_name">
+                <a href="{{base_url}}/profile.php?id={{user_ID}}">{{user_name}} {{user_surname}}</a>
+            </div>
+            <div class="widget_opt">
+                <a class="add_user_btn" data="{{user_ID}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"> </span> Dodaj</a>
+            </div>
+        </div>
     </div>
 </div>

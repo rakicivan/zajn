@@ -1,0 +1,8 @@
+{% if universities.number > 0%}
+    <option disabled selected>Odaberite univerzitet</option>
+    {% for element in universities.array %}
+		<option value = "{{element.university_ID}}">{{element.name}}</option>
+	{% endfor %}
+{% else %}
+    <option disabled selected>Trenutno nema univerziteta</option>
+{% endif %}

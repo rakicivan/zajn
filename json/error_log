@@ -1,0 +1,11 @@
+[14-Mar-2016 00:22:03 Europe/Zagreb] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home/ivrahr/public_html/beta1/classes/base.class.php on line 63
+[14-Mar-2016 00:22:07 Europe/Zagreb] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home/ivrahr/public_html/beta1/classes/base.class.php on line 63
+[14-Mar-2016 00:22:39 Europe/Zagreb] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home/ivrahr/public_html/beta1/classes/base.class.php on line 63
+[14-Mar-2016 00:23:01 Europe/Zagreb] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home/ivrahr/public_html/beta1/classes/base.class.php on line 63
+[14-Mar-2016 00:35:43 Europe/Zagreb] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home/ivrahr/public_html/beta1/classes/base.class.php on line 63
+[14-Mar-2016 00:39:41 Europe/Zagreb] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home/ivrahr/public_html/beta1/classes/base.class.php on line 63
+[14-Mar-2016 01:34:47 Europe/Zagreb] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home/ivrahr/public_html/beta1/classes/base.class.php on line 63
+[14-Mar-2016 01:55:49 Europe/Zagreb] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home/ivrahr/public_html/beta1/classes/base.class.php on line 63
+[14-Mar-2016 03:59:04 Europe/Zagreb] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home/ivrahr/public_html/beta1/classes/base.class.php on line 63
+[14-Mar-2016 03:59:20 Europe/Zagreb] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home/ivrahr/public_html/beta1/classes/base.class.php on line 63
+[14-Mar-2016 04:23:46 Europe/Zagreb] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home/ivrahr/public_html/beta1/classes/base.class.php on line 63

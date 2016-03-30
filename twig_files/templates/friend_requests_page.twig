@@ -1,0 +1,47 @@
+{% include 'header.twig' %}
+<div class="row">
+    <div class="col-sm-3">
+        {% include 'left_bar_index.twig' %}
+    </div>
+    <div class="col-sm-6">
+        {% if requests_i_sent is not empty %}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="box">
+                    <div class="h4">
+                        Poslani zahtjevi
+                    </div>
+                    <hr/>
+                    {% include 'friend_requests_i_sent.twig' %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if requests_for_me is not empty%}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="box">
+                    <div class="h4">
+                        Primljeni zahtjevi
+                    </div>
+                    <hr/>
+                    {% include 'friend_requests_for_me_page.twig' %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if requests_for_me is empty and requests_i_sent is empty%}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="alert alert-info">
+                        Nemate zahtjeva za prijateljstvo.
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-sm-3">
+        {% include 'right_bar_index.twig' %}
+    </div>
+</div>
+{% include 'footer.twig' %}

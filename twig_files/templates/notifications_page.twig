@@ -1,0 +1,25 @@
+{% include 'header.twig' %}
+<div class="row">
+    <div class="col-sm-3">
+        {% include 'left_bar_index.twig' %}
+    </div>
+    <div class="col-sm-6">
+        {% if notifications is not empty %}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="box">
+                    <div class="h4">
+                        Obavijesti
+                    </div>
+                    <hr/>
+                    {% include 'notifiticatins_get.twig' %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-sm-3">
+        {% include 'right_bar_index.twig' %}
+    </div>
+</div>
+{% include 'footer.twig' %}

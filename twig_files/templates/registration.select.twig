@@ -1,7 +1,6 @@
-{# empty Twig template #}
-<select id="{{ select_id }}" name="{{ select_id }}">
+<select class="form-control" id="{{select_id}}" name="{{select_id}}">
     <option value="-1">{{select_default_text}}</option>
     {% for element in array %}
-        <option value ="{{element.id | e}}">{{element.text}}</option>
-    {% endfor %}
+            <option value="{{element.id}}">{{element.text}}</option>
+        {% endfor %}
 </select>

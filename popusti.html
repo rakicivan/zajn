@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Popusti</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+        <link rel="stylesheet" href="js/jquery-ui-1.11.4/jquery-ui.min.css" />
+        <script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
+        <link rel="stylesheet" href="css/font-awesome.min.css" />
+        <link rel="stylesheet" href="css/register.css" />
+        <link rel="stylesheet" href="css/base.css" />
+        <link rel="stylesheet" href="fonts/flaticon.css" />
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+          <img alt="Brand" src="{{base_url}}/page_imgs/logo2.ico">
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+            
+            <li class="dropdown">
+                <input id="search_friends" type="text" class="form-control dropdown-toggle" placeholder="Pronađi kolege..." data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <ul id="search_friends_dropdown" class="dropdown-menu">
+                  
+                </ul>
+              </li>
+        </div>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{base_url}}/naslovna">Početna</a></li>
+
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle, notifications_bar" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Obavijesti&nbsp;
+              
+              <span id="numOfNotifications" class="badge"></span>
+              
+              <span id="numOfNotifications" class="badge"></span>
+              
+            </a>
+            <ul class="dropdown-menu" id="notificationDropdown">
+                
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="#" id = "friend_requests_button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Zahtjevi&nbsp;<span id="numFriendRequests" class="badge"></span></a>
+            <ul class="dropdown-menu" id="friendRequestDropdown">
+                
+            </ul>
+        </li>
+        <li><a href="{{base_url}}">Poruke</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            {#<li><a href="#">Početna</a></li>
+            <li><a href="#">Another action</a></li>#}
+            <li><a href="#">Postavke</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="{{base_url}}/logout.php">Odjavi se</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="leftSidebar">
+    <div class="sidebarBlock">
+        <div class="center">
+            <img class="myProfilePic" src="page_imgs/default.jpg" alt="profile picture">
+            <h3 class="myName"> </h3>
+        </div>
+    </div>
+   
+    <div class="sidebarMenu" id = "script_menu"> 
+        <i class="glyphicon glyphicon-paperclip"></i> Skripte
+        <ul style = "display:none;">
+            <a href = "scripts.php"><li>Pregled skripti</li></a>
+            <a href = "scripts.php?s=U"><li>Upload skripte</li></a>
+                <a href = "scripts.php?s=A"><li>Administracija skripti</li></a>
+         </ul>
+    </div>
+
+    <a href="   "><div class="sidebarMenu"> <i class="glyphicon glyphicon-eur"></i> Pozovi kolege</div></a>
+    <a href="   "><div class="sidebarMenu"> <i class="glyphicon glyphicon-education"></i> Grupe</div></a>
+    <a href="   "><div class="sidebarMenu"> <i class="glyphicon glyphicon-tags"></i> Popusti</div></a>
+</div>
+
+    <div id="dsokac_file">
+
+
+<!--POČETAK POPUSTA-->
+<script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js?v=2.1.2"></script>
+<script>
+  $(function() {
+  var $container = $('#container');
+  $container.mixItUp();
+  $("button.nofloat").click(function() {
+    $container.find(".mix").css({
+      "float": "none",
+      "margin": "0 0 4px 0"
+    });
+    $container.find(".clear").css("clear", "none");
+  });
+  $("button.float").click(function() {
+    $container.find(".mix").css({
+      "float": "left",
+      "margin": "0 4px 4px 0"
+    });
+    $container.find(".clear").css(
+      "clear", "both");
+  });
+});
+</script>
+
+       <div class="col-md-8 wrapper">
+           <div class="col-md-3">
+               <div class="row">
+                   <div class="drop-popust dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Odaberite mjesto
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu col-md-11">
+                            <li><a href="#">Varaždin</a></li>
+                            <li><a href="#">Šibenik</a></li>
+                        </ul>
+                    </div>
+               </div>
+               <div class="row box">
+                    <button type="button" data-filter=".category-1" class="filter col-md-10 btn btn-info"><i class="glyph-icon flaticon-food"></i>&nbsp;&nbsp;Prehrana</button></br>
+                    <button type="button" data-filter=".category-2" class="filter col-md-10 btn btn-info"><i class="glyph-icon flaticon-black"></i>&nbsp;&nbsp;Teretana</button></br>
+                    <button type="button" data-filter=".category-3" class="filter col-md-10 btn btn-info"><i class="glyph-icon flaticon-cup"></i>&nbsp;&nbsp;Kafić</button></br>
+                    <button type="button" data-filter=".category-4" class="filter col-md-10 btn btn-info"><i class="glyph-icon flaticon-scissors"></i>&nbsp;&nbsp;Frizer</button></br>
+                    <button type="button" data-filter=".category-5" class="filter col-md-10 btn btn-info"><i class="glyph-icon flaticon-fashion"></i>&nbsp;&nbsp;Zlatarna</button>
+                    <button type="button" data-filter="all" class="filter col-md-10 btn btn-info" style="padding:11px 12%;">Svi popusti</button>
+                   <a hreh="#" class="info-popust">Kako do ovih popusta?</a>
+               </div>
+           </div> 
+           <div class="col-md-10 box" id="container">
+               <div class="row popusti post mix category-5">
+                 <div class="col-md-4 img">
+                     <img src="page_imgs/mini_logo_v2_2.png">
+                 </div> 
+                 <div class="col-md-5 discription">
+                    <p class="main"><i class="glyph-icon flaticon-web"></i>&nbsp;&nbsp;Frizerski salon Grosh</p>
+                    <p class="main"><i class="glyph-icon flaticon-signs"></i>&nbsp;&nbsp;Velimira Škorpika 2a</p>
+                    <p class="main"><i class="glyph-icon flaticon-black-1"></i>&nbsp;&nbsp;Popusti za sve IVRA studente</p>
+                    <div class="col-md-11 opis">
+                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse felis turpis, finibus vitae nulla tincidunt, varius blandit neque. Aliquam ut pulvinar nunc. Curabitur </p>
+                    </div> 
+                 </div>  
+                 <div class="col-md-3 col-xs-7">
+                    <div class="col-md-12 vrijednost-popust">
+                        <h2>10%</h2>                       
+                    </div>
+                </div>
+            </div>
+
+               <div class="row popusti post mix category-4">
+                 <div class="col-md-4 img">
+                     <img src="page_imgs/mini_logo_v2_2.png">
+                 </div> 
+                 <div class="col-md-5 discription">
+                    <p class="main"><i class="glyph-icon flaticon-web"></i>&nbsp;&nbsp;Frizerski salon Grosh</p>
+                    <p class="main"><i class="glyph-icon flaticon-signs"></i>&nbsp;&nbsp;Velimira Škorpika 2a</p>
+                    <p class="main"><i class="glyph-icon flaticon-black-1"></i>&nbsp;&nbsp;Popusti za sve IVRA studente</p>
+                    <div class="col-md-11 opis">
+                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse felis turpis, finibus vitae nulla tincidunt, varius blandit neque. Aliquam ut pulvinar nunc. Curabitur </p>
+                    </div> 
+                 </div>  
+                 <div class="col-md-3 col-xs-7">
+                    <div class="col-md-12 vrijednost-popust">
+                        <h2>10%</h2>                       
+                    </div>
+                </div>
+            </div>
+
+               <div class="row popusti post mix category-2">
+                 <div class="col-md-4 img">
+                     <img src="page_imgs/mini_logo_v2_2.png">
+                 </div> 
+                 <div class="col-md-5 discription">
+                    <p class="main"><i class="glyph-icon flaticon-web"></i>&nbsp;&nbsp;Frizerski salon Grosh</p>
+                    <p class="main"><i class="glyph-icon flaticon-signs"></i>&nbsp;&nbsp;Velimira Škorpika 2a</p>
+                    <p class="main"><i class="glyph-icon flaticon-black-1"></i>&nbsp;&nbsp;Popusti za sve IVRA studente</p>
+                    <div class="col-md-11 opis">
+                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse felis turpis, finibus vitae nulla tincidunt, varius blandit neque. Aliquam ut pulvinar nunc. Curabitur </p>
+                    </div> 
+                 </div>  
+                 <div class="col-md-3 col-xs-7">
+                    <div class="col-md-12 vrijednost-popust">
+                        <h2>10%</h2>                       
+                    </div>
+                </div>
+            </div>
+         
+               <div class="row popusti post mix category-3">
+                 <div class="col-md-4 img">
+                     <img src="page_imgs/mini_logo_v2_2.png">
+                 </div> 
+                 <div class="col-md-5 discription">
+                    <p class="main"><i class="glyph-icon flaticon-web"></i>&nbsp;&nbsp;Frizerski salon Grosh</p>
+                    <p class="main"><i class="glyph-icon flaticon-signs"></i>&nbsp;&nbsp;Velimira Škorpika 2a</p>
+                    <p class="main"><i class="glyph-icon flaticon-black-1"></i>&nbsp;&nbsp;Popusti za sve IVRA studente</p>
+                    <div class="col-md-11 opis">
+                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse felis turpis, finibus vitae nulla tincidunt, varius blandit neque. Aliquam ut pulvinar nunc. Curabitur </p>
+                    </div> 
+                 </div>  
+                 <div class="col-md-3 col-xs-7">
+                    <div class="col-md-12 vrijednost-popust">
+                        <h2>10%</h2>                       
+                    </div>
+                </div>
+            </div>
+
+               <div class="row popusti post mix category-1">
+                 <div class="col-md-4 img">
+                     <img src="page_imgs/mini_logo_v2_2.png">
+                 </div> 
+                 <div class="col-md-5 discription">
+                    <p class="main"><i class="glyph-icon flaticon-web"></i>&nbsp;&nbsp;Frizerski salon Grosh</p>
+                    <p class="main"><i class="glyph-icon flaticon-signs"></i>&nbsp;&nbsp;Velimira Škorpika 2a</p>
+                    <p class="main"><i class="glyph-icon flaticon-black-1"></i>&nbsp;&nbsp;Popusti za sve IVRA studente</p>
+                    <div class="col-md-11 opis">
+                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse felis turpis, finibus vitae nulla tincidunt, varius blandit neque. Aliquam ut pulvinar nunc. Curabitur </p>
+                    </div> 
+                 </div>  
+                 <div class="col-md-3 col-xs-7">
+                    <div class="col-md-12 vrijednost-popust">
+                        <h2>10%</h2>                       
+                    </div>
+                </div>
+            </div>
+            
+
+                 
+
+<!--kRAJ POPUSTA-->
+
+        <script type="text/javascript" src="js/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/twig_loader.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/posts.js"></script>
+        <script type="text/javascript" src="js/profile.js"></script>
+        <script type="text/javascript" src="js/friends.js"></script>
+        <script type="text/javascript" src="js/jquery.auto_html.js"></script>
+        <script type="text/javascript" src="js/search_friends.js"></script>
+        <script type="text/javascript" src="js/validation.js"></script>
+    </body>
+</html>

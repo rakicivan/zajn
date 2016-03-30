@@ -1,28 +1,157 @@
-{# empty Twig template #}
-{% include 'navigation.twig'%}
 {% include 'header.twig' %}
-        <h1>{{title}}</h1>
-        <p>User info</p>
-        <div>
-            Email: {{user_info.email}}</br>
-            lozinka: {{user_info.password}}</br>
-            university: {{user_info.university}}</br>
-            collegeName: {{user_info.collegeName}}</br>
-            cityName: {{user_info.cityName}}</br>
-            subjectName: {{user_info.subjectName}}</br>
-            dormName: {{user_info.dormName}}</br>
-            tosName: {{user_info.tosName}}</br>
-            universitieName: {{user_info.universitieName}}</br></br>
+<div id="dsokac_file">
+    
+</div>
+<div class="row">
+    <div class="profile_cover">
+        <img class="img-responsive" {#src="{{base_url}}/page_imgs/ivan-profile-pic.jpg"#}/> 
+        <div class="profile_floater">
+            <div class="user_avatar">
+                <img id="indexPicture" class="img-circle center-block" src="{{base_url}}/{{get_user_info.user_avatar}}" />
+                <div class="profileChanger">
+                                    Promijeni sliku
+                </div>
+            </div>
+            <div class="user_name">
+                {{get_user_info.name}} {{get_user_info.surname}}
+            </div>
         </div>
-        <p>Posts</p>
-	<div id="posts_container">
-            {% for element in get_posts %}
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        <div class="row left_side_bar">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="box">
+                        <div class="box_head">Informacije</div>
+                        <div class="user_info">
+                            PROBNO<br/><br/>
+                            Email: {{get_user_info.email}}</br>
+                            lozinka: {{get_user_info.password}}</br>
+                            university: {{get_user_info.university}}</br>
+                            collegeName: {{get_user_info.collegeName}}</br>
+                            cityName: {{get_user_info.cityName}}</br>
+                            subjectName: {{get_user_info.subjectName}}</br>
+                            dormName: {{get_user_info.dormName}}</br>
+                            tosName: {{get_user_info.tosName}}</br>
+                            universitieName: {{get_user_info.universitieName}}</br></br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {#<div class="left_side_bar_nav col-xs-12">
+                <div class="row">
+                    <div class="box">
+                        <ul class="list-unstyled">
+                            <li><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"> </span> Skripte</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-calendar" aria-hidden="true"> </span></a> Događaji</li>
+                            <li><a href="#"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"> </span> Oglasi</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"> </span> Pozovi kolege</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-record" aria-hidden="true"> </span> Moja grupa</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-tags" aria-hidden="true"> </span> Popusti</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>#}
+        </div>
+    </div>
+    <div class="col-sm-6">
+        {% if answered_request == 0 and areFriends == 0 and did_i_request_friendship == 0%}
+        <div id="askProfile" class="row">
+            <div class="col-sm-6">
+                Želite li dodati za prijatelja?
+            </div>
+            <div class="col-sm-6">
+                <button data="{{profileID}}" id="btnAcceptProfile" type="button" class="btn btn-primary">Prihvati</button>
+                <button data="{{profileID}}" id="btnDeclineProfile" type="button" class="btn btn-default">Odbij</button>
+            </div>
+        </div>
+        {% elseif not_my_profile == 1 and areFriends == 0 and answered_request == 1 %}
+            <div id="addProfile" class="row">
+                <div class="col-sm-12">
+                    <button data="{{profileID}}" id="btnAddFriendProfile" type="button" class="btn btn-primary">Dodaj za prijatelja</button>
+                </div>
+            </div>
+        {% elseif not_my_profile == 1 %}
+            <div id="removeProfile" class="row">
+                <div class="col-sm-12">
+                {% if areFriends == 0 %}
+                    <button data="{{profileID}}" id="btnRemoveFriendProfile" type="button" class="btn btn-default">Otkaži zahtjev</button>
+                {% else %}
+                    <button data="{{profileID}}" id="btnRemoveFriendProfile" type="button" class="btn btn-default">Prekini prijateljstvo</button>
+                {% endif %}
+                </div>
+            </div>
+        {% endif %}
+        {% if not not_my_profile %}{% include 'post_textarea.twig' %}{% endif %}
+        <div class="row" id="posts_container" data-p-l=10 data-p-of=0>
+            {% for element in get_wall_posts %}
                 {% include 'post.twig' with {
+                    "user_ID": element.user_ID,
+                    "user_avatar": element.user_avatar,
                     "post_ID": element.post_ID,
                     "author_name": element.author_name,
+                    "author_surname": element.author_surname,
                     "text": element.text,
-                    "time": element.likes
+                    "time": element.time,
+                    "numb_of_comms": element.numb_of_comms
                 }%}
             {% endfor %}
+            {% if attribute(get_wall_posts, 0).count_posts >= 10 %}<div class="l_m text-center"><span id="load_more" class="">Učitaj više</span></div>{% endif %}
+            {% if attribute(get_wall_posts, 0).count_posts == 0 %}
+                {% if areFriends == 0 and not_my_profile == 1 %}
+                    <div class="l_m text-center"><span>Ovaj student objave dijeli samo sa prijateljima!</span></div>
+                {% else %}
+                    <div class="l_m text-center"><span>Nema objava</span></div>
+                {% endif %}
+            {% endif %}
         </div>
-{% include 'footer.twig' %}
+    </div>
+    <div class="col-sm-3 right_sidenav">
+        <div class="row">
+            <div class="col-xs-6 col-sm-12">
+                <div class="row">
+                    <div class="box">
+                        <div class="box_head">Prijatelji</div>
+                        <div class="row friends_widget">
+                            {% for elements in get_friends %}
+                                {% include 'profile_friends_widget.twig' with {
+                                    "user_avatar": elements.user_avatar,
+                                    "user_ID": elements.user_ID,
+                                    "user_name": elements.name,
+                                    "user_surname": elements.surname
+                                }%}
+                            {% endfor %}
+                        </div>
+                        <div class="widget_see_all"><a href="{{base_url}}/profile.php?{% if get_user_info.user_ID != "" %}id={{get_user_info.user_ID}}&{% endif %}friends=1">Svi</a></div>
+                    </div>
+                </div>
+            </div>
+            {#<div class="col-xs-6 col-sm-12">
+                <div class="row">
+                    <div class="box">
+                        <div class="box_head">Oglasi</div>
+                        {#{% for elements in get_ads %}
+                            {% include 'ads_widget.twig' with {
+                                "add_avatar": elements.user_avatar,
+                                "add_ID": elements.user_ID,
+                                "add_name": elements.name
+                            }%}
+                        {% endfor %}#}
+             {#       </div>
+                </div>
+            </div>
+        </div>#}
+    </div>
+</div>
+<script>
+     // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+</script>
+{% include 'footer.twig'%}

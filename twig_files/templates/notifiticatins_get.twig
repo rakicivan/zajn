@@ -1,0 +1,11 @@
+{% for request in notifications.array %}
+<li data = "{{request.notification_ID}}" style="margin-bottom: 3px;" class="frendRequestItem">
+    {% if request.notification_type == 1 %}
+	    <a style="padding:5px;" href="profile.php?id={{request.sender}}">{{request.name}} {{request.surname}} je prihvatio vaš zahtjev za prijateljstvo!</a>    
+    {% else %}
+	    <a style="padding:5px;" href="profile.php?id={{request.user_ID}}&post={{request.post}}">{{request.name}} {{request.surname}} je komentarisao status!</a>
+	{%endif%}
+</li>
+{% else %}
+    <li>Nemate obavijesti.</li>
+{% endfor %}

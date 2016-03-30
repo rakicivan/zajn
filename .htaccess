@@ -1,6 +1,22 @@
 RewriteEngine On
+RewriteRule ^404$ 404.php [NC,L]
+#RewriteRule ^profil?$ profile.php [NC,L]
+#RewriteRule ^profil/([0-9]+)=?$ profile.php?id=$1 [NC,L]
 RewriteRule ^/?$ index.php [NC,L]
-RewriteRule ^registracija/?$ register.php [NC,L]
+RewriteRule ^naslovna/?$ index.php [NC,L]
+RewriteRule ^skripte/?$ scripts.php [NC,L]
+RewriteRule ^ulaz/?$ entry.php [NC,L]
+RewriteRule ^popusti/?$ popusti.php [NC,L]
+RewriteRule ^popusti_sibenik/?$ popusti_sibenik.php [NC,L]
+RewriteRule ^popusti_varazdin/?$ popusti_varazdin.php [NC,L]
+RewriteRule ^obavijesti/?$ obavijesti.php [NC,L]
+RewriteRule ^zahtjevi/?$ friend_requests.php [NC,L]
+RewriteRule ^grupe/?$ groups.php [NC,L]
+RewriteRule ^pozovi/?$ pozovi_kolege.php [NC,L]
+
+RewriteRule ^administracija_predmeti/?$ scripts.php?s=Courses [NC,L]
+RewriteRule ^administracija_skripte/?$ scripts.php?s=Admin [NC,L]
+
 
 #RewriteRule    ^([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$    get_blog_post_by_title.php?category_name=$1&post_title=
             #http://www.pets.com/categoty/post/
