@@ -1,16 +1,26 @@
 <div class="box" id="post" data={{post_ID}} data-a={{user_ID}}>
+    
+    
     <div class="row">
-        {% if not not_my_profile %}<button type="button" class="close del_post"><span aria-hidden="true">&times;</span></button>{% endif %}
-    </div>
-    <div class="row">
-        <div class="col-sm-2">
-            <div class="user_avatar"><a href="{{base_url}}/profile.php?id={{user_ID}}"><img class="center-block img-circle" src="{{base_url}}/{{user_avatar}}" /></a></div>
-        </div>
-        <div class="col-sm-10">
-            <div class="post_author_name"><a href="{{base_url}}/profile.php?id={{user_ID}}">{{author_name}} {{author_surname}}</a></div>
-            <div class="post_text"><pre>{{text}}</pre></div>
-            <a href = "{{base_url}}/profile.php?id={{user_ID}}d66f72f9c9df46ff60a84f91fbccd321&post={{post_ID}}"><div class="post_time">{{time}}</div></a>
-        </div>
+		<div class="col-md-12 post-user-info">
+			<div class="col-md-2">
+				<div class="user_avatar post"><a href="{{base_url}}/profile.php?id={{user_ID}}"><img class="center-block img-circle" src="{{base_url}}/{{user_avatar}}" /></a></div>
+			</div>
+			<div class="col-md-9">
+				<div class="post_author_name"><a href="{{base_url}}/profile.php?id={{user_ID}}">{{author_name}} {{author_surname}}</a></div>	
+				<div class="post_user_college">{{get_user_info.collegeName}}</div>
+			</div>
+			<div class="pull-right delete_post">
+			        {% if not not_my_profile %}<button type="button" class="close del_post"><span aria-hidden="true">&times;</span></button>{% endif %}
+			</div>
+		</div>
+		<div class="col-md-12 nopaddingsides">
+			<div class="post_text"><pre>{{text}}</pre>
+			<a href = "{{base_url}}/profile.php?id={{user_ID}}d66f72f9c9df46ff60a84f91fbccd321&post={{post_ID}}" class="link-datum pull-right"><div class="post_time"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{time}}</div></a>
+			
+			</div>
+				
+		</div>
     </div>
     <div class="row">
         <div class="c_container">
