@@ -70,17 +70,20 @@
                 <button data="{{profileID}}" id="btnDeclineProfile" type="button" class="btn btn-default">Odbij</button>
             </div>
         </div>
-        {% endif %}
-        {% if not_my_profile == 1 and areFriends == 0 and answered_request == 1 %}
+        {% elseif not_my_profile == 1 and areFriends == 0 and answered_request == 1 %}
             <div id="addProfile" class="row">
                 <div class="col-sm-12">
                     <button data="{{profileID}}" id="btnAddFriendProfile" type="button" class="btn btn-primary">Dodaj za prijatelja</button>
                 </div>
             </div>
-        {% elseif not_my_profile == 1 and areFriends == 1 %}
+        {% elseif not_my_profile == 1 %}
             <div id="removeProfile" class="row">
                 <div class="col-sm-12">
+                {% if areFriends == 0 %}
+                    <button data="{{profileID}}" id="btnRemoveFriendProfile" type="button" class="btn btn-default">Otkaži zahtjev</button>
+                {% else %}
                     <button data="{{profileID}}" id="btnRemoveFriendProfile" type="button" class="btn btn-default">Prekini prijateljstvo</button>
+                {% endif %}
                 </div>
             </div>
         {% endif %}

@@ -8,8 +8,8 @@ var TWIG = TWIG || {
             data:{template:template,params:parameters},
             success: callback,
             error: function(error){
-              //  console.log(error.responseText);
-              //  alert("Twig template loading error.");
+              console.log(error.responseText);
+              alert("Twig template loading error.");
             },
             global: true
             

@@ -4,7 +4,24 @@
  * and open the template in the editor.
  */
 var viewed_User = null;
+var baseUrl = null;
 
+function getTemplate(json_url,template,parameters,type,callback){
+    $.ajax({
+        url:json_url,
+        contenttype:"application/json",
+        datatype:"json",
+        method:type,
+        data:{template:template,params:parameters},
+        success: callback,
+        error: function(error){
+          //  console.log(error.responseText);
+          //  alert("Twig template loading error.");
+        },
+        global: true
+        
+    });
+}
 
 function getData_ajax(url, data, successFunction, errorFunction, method)
 {
@@ -218,7 +235,23 @@ $(document).ready(function(){
             }
             else {
                 var post_html = "";
-                for(var i = 0; i < data.length; i++) { 
+
+                TWIG.getTemplate("json/twigLoads/loadPost.json.php","post.twig", {
+                        post_ID:data[0]['post_ID'],
+                        user_ID:data[0]['user_ID'],
+                        user_avatar:data[0]['user_avatar'],
+                        author_name:data[0]['author_name'],
+                        author_surname:data[0]['author_surname'],
+                        text:data[0]['text'],
+                        time:data[0]['time'],
+                        not_my_profile: 0,
+                        numb_of_comms: 0,
+                        base_url: baseUrl
+                    },"post",function(data){
+                    $("#posts_container").prepend(data);
+                });
+
+               /* for(var i = 0; i < data.length; i++) { 
                     post_html += '<div class="box" id="post" data="'+data[i]['post_ID']+'" data-a="'+data[i]['user_ID']+'">'+
                                 '<div class="row"><button type="button" class="close del_post"><span aria-hidden="true">&times;</span></button></div>'+
                                 '<div class="row"><div class="col-sm-2"><div class="user_avatar"><img class="center-block img-circle" src="'+data[i]['user_avatar']+'" /></div></div>'+        
@@ -227,19 +260,18 @@ $(document).ready(function(){
                                 '<div class="row"><div class="c_container"><div class="post_comments_container"><div class="c_c"></div></div>'+
                                 '<div class="post_comment_textarea_container"><form><textarea class="post_comment_textarea" placeholder="Napiši komentar..."></textarea></form></div>'+
                                 '<div class="load_post_comments"><span>Load comms</span></div></div></div></div>';
-                }
+                }*/
                 $("#post_textarea").val("");
-                $("#posts_container").prepend(post_html);
                 $(".post_file_container").html("");
                 auto_html();                
             }
         }
+        function errorFunction(data){ console.log(data); }
 
     });
 
     // load post comments
     $('body').on('click', '.load_post_comments',function(){
-        
         var object = $(this);
         var id = object.parents('#post').attr('data');
 
@@ -260,8 +292,7 @@ $(document).ready(function(){
                 
             }
             else{
-                for(var i = 0; i < data.length; i++) {
-                
+                for(var i = 0; i < data.length; i++) {             
                     comm_html += '<div class="row comments" data="'+data[i]['comment_ID']+'">'+
                         '<div class="row"><button type="button" class="close del_comm"><span aria-hidden="true">&times;</span></button></div>'+
                         '<div class="col-sm-2"><div class="row"><div class="user_avatar"><a href="profile.php?id='+data[i]['user_ID']+'"><img class="center-block img-circle" src="'+data[i]['user_avatar']+'" /></a></div></div></div>'+
@@ -313,7 +344,6 @@ $(document).ready(function(){
                     else {
                         var comm_html = "";
                         for(var i = 0; i < data.length; i++) {
-
                             comm_html += '<div class="row comments" data="'+data[i]['comment_ID']+'">'+
                                         '<div class="row"><button type="button" class="close del_post"><span aria-hidden="true">&times;</span></button></div>'+
                                         '<div class="col-sm-2"><div class="row"><div class="user_avatar"><img class="center-block img-circle" src="'+data[i]['user_avatar']+'" /></div></div></div>'+
@@ -400,21 +430,27 @@ $(document).ready(function(){
 
         function successFunction(data){
             var post_html = "";
-            
+
+            console.log(data);            
             if(data == ""){
                 $("#load_more").html("Nema više objava...");
             }else {
-                var post_html = "";
                 for(var i = 0; i < data.length; i++) {
-                    post_html += '<div class="box" id="post" data="'+data[i]['post_ID']+'">'+
-                            '<div class="row"><button type="button" class="close del_post"><span aria-hidden="true">&times;</span></button></div>'+
-                            '<div class="row"><div class="col-sm-2"><div class="user_avatar"><img class="center-block img-circle" src="'+data[i]['user_avatar']+'" /></div></div>'+
-                            '<div class="col-sm-10"><div class="post_author_name">'+data[i]['author_name']+' '+data[i]['author_surname']+'</div><div class="post_text"><pre>'+data[i]['text']+'</pre></div><div class="post_time">'+data[i]['time']+'</div></div></div>'+
-                            '<div class="row"><div class="c_container"><div class="post_comments_container"><div class="c_c"></div></div>'+
-                            '<div class="post_comment_textarea_container"><form><textarea class="post_comment_textarea" placeholder="Napiši komentar..."></textarea></form></div>'+
-                            '<div class="load_post_comments"><span>Load comms</span></div></div></div></div>';
+                    TWIG.getTemplate("json/twigLoads/loadPost.json.php","post.twig", {
+                            post_ID:data[i]['post_ID'],
+                            user_ID:data[i]['user_ID'],
+                            user_avatar:data[i]['user_avatar'],
+                            author_name:data[i]['author_name'],
+                            author_surname:data[i]['author_surname'],
+                            text:data[i]['text'],
+                            time:data[i]['time'],
+                            not_my_profile: 0,
+                            numb_of_comms: 0,
+                            base_url: baseUrl
+                        },"post",function(data){
+                        $(".l_m").before(data);
+                    });
                 }
-                $(".l_m").fadeIn('slow').before(post_html);
             }
         }
      });

@@ -1,14 +1,16 @@
 <?php
 session_start();
 
-if(empty($_SESSION['ses_user_signed_in'])) {header('Location: ulaz');}
-
 require_once 'twig_core.php';
 include_once 'classes/base.class.php';
 include_once 'classes/post.class.php';
 include_once 'classes/profile.class.php';
 include_once 'classes/friends.class.php';
 include_once 'classes/user.class.php';
+
+if(empty($_SESSION['ses_user_signed_in'])) {
+    header('Location: ulaz');
+}
 
 // provjera da li je $_GET["friends"] postavljen i da li postoji
 if(isset($_GET["friends"]) && $_GET["friends"] == 1){
@@ -105,3 +107,5 @@ if(empty($user_info) || $user_info == 0){
         ));
     }
 }
+
+echo '<script> baseUrl = "'.$baseObject->getBaseUrl().'"; </script>';

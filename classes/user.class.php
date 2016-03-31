@@ -41,7 +41,7 @@ class User{
 
     public function getNotifications_all($id, $limit = null, $from_id = null){
         $raw_id = intval($this->baseObject->decrypt($id));
-        $query = "select notifications.notification_ID, notifications.sender, notifications.received_at, notifications.seen, notifications.notification_type, users.name, users.surname, comments.post from notifications, users, comments where notifications.owner = {$raw_id} AND users.user_ID = notifications.sender AND comments.comment_ID = notifications.link_target ORDER BY `notifications`.`notification_ID` DESC";
+        $query = "select notifications.notification_ID, notifications.sender, notifications.received_at, notifications.seen, notifications.notification_type, notifications.link_target AS post, users.name, users.surname from notifications, users where notifications.owner = {$raw_id} AND IF(notification_type = '1', users.user_ID = notifications.owner, users.user_ID = notifications.sender) ORDER BY `notifications`.`notification_ID` DESC";
         
         if($from_id != null){$query .= " offset {$from_id}, {$limit}";}
         else if($limit != null){$query .= " limit {$limit}";}
@@ -52,20 +52,16 @@ class User{
             $result[$i]["post"] = $this->baseObject->encrypt($result[$i]["post"]);
             $result[$i]["user_ID"] = $id;
             $result[$i]["notification_ID"] = $this->baseObject->encrypt(($result[$i]["notification_ID"]));
-            //echo '<script>alert("sender '.$result[$i]["sender"].'")</script>';
         }
         $object["number"] = count($result);
         $object["array"] = $result;
-        //print_r($object);
-        //echo "<br>";
-        //echo "<br>";
        
         return $object;
     }
 
     public function getNotifications($id, $limit = null, $from_id = null){
         $raw_id = intval($this->baseObject->decrypt($id));
-        $query = "select notifications.notification_ID, notifications.sender, notifications.received_at, notifications.seen, notifications.notification_type, users.name, users.surname, comments.post from notifications, users, comments where notifications.owner = {$raw_id} AND notifications.seen = 0 AND users.user_ID = notifications.sender AND comments.comment_ID = notifications.link_target ORDER BY `notifications`.`notification_ID` DESC";
+        $query = "select notifications.notification_ID, notifications.sender, notifications.received_at, notifications.seen, notifications.notification_type, notifications.link_target AS post, users.name, users.surname from notifications, users where notifications.owner = {$raw_id} AND notifications.seen = 0 AND IF(notification_type = '1', users.user_ID = notifications.owner, users.user_ID = notifications.sender) ORDER BY `notifications`.`notification_ID` DESC";
         
         if($from_id != null){$query .= " offset {$from_id}, {$limit}";}
         else if($limit != null){$query .= " limit {$limit}";}
@@ -76,13 +72,9 @@ class User{
             $result[$i]["post"] = $this->baseObject->encrypt($result[$i]["post"]);
             $result[$i]["user_ID"] = $id;
             $result[$i]["notification_ID"] = $this->baseObject->encrypt(($result[$i]["notification_ID"]));
-            //echo '<script>alert("sender '.$result[$i]["sender"].'")</script>';
         }
         $object["number"] = count($result);
         $object["array"] = $result;
-        //print_r($object);
-        //echo "<br>";
-        //echo "<br>";
        
         return $object;
     }
@@ -92,7 +84,9 @@ class User{
         $raw_friend = intval($this->baseObject->decrypt($friend));
         
         $current_time = date("Y-m-d H:i:s",time());
-        
+
+        $this->baseObject->query("INSERT","INSERT INTO `notifications` (`owner`, `sender`, `received_at`,  `seen`, `notification_type`) VALUES ('{$raw_owner}', '{$raw_friend}', '{$current_time}', '0', '1')");
+
         $query = "update friends set pending=0, accepted_at='{$current_time}' where owner={$raw_owner} and friend={$raw_friend}";
         $result = $this->baseObject->query("UPDATE", $query);
 

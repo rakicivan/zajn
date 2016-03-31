@@ -33,3 +33,5 @@ echo $template->render(array(
     "is_admin" => $userObject->isAdmin(),
     "user_notifications" => $userObject->getNotifications($user_id,5)
 ));
+
+echo '<script> baseUrl = "'.$baseObject->getBaseUrl().'"; </script>';

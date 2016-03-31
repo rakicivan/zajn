@@ -64,7 +64,6 @@ var APP = APP || {
     
 };
 
-
 $(document).ajaxStart(function(e){
     Offline.check();
     $(e.target).addClass("wait");

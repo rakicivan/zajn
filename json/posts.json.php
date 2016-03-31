@@ -77,10 +77,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['comment_submit'])){
         $json_msg = $baseObject->query("INSERT","INSERT INTO `comments` (`text`, `author`, `time`, `post`) VALUES ('{$comment_textarea}', '{$user_id}', NOW(), '{$post_id}')");
         
         if(is_int($json_msg)){
-            //$user_id = $baseObject->decrypt($user_id);
-
             if($user_id != $author_id) {
-                $baseObject->query("INSERT","INSERT INTO `notifications` (`owner`, `sender`, `link_target`, `received_at`,  `seen`, `notification_type`) VALUES ('{$author_id}', '{$user_id}', '{$json_msg}', NOW(), '0', '0')");    
+                $baseObject->query("INSERT","INSERT INTO `notifications` (`owner`, `sender`, `link_target`, `received_at`,  `seen`, `notification_type`) VALUES ('{$author_id}', '{$user_id}', '{$json_msg}', NOW(), '0', '2')");    
             }
 
             $json_msg = $baseObject->query("", "SELECT users.profile_picture AS user_avatar, users.name AS author_name, users.surname AS author_surname, comment_ID, text, time, likes FROM `comments` JOIN users on users.user_ID = comments.author WHERE comment_ID = {$json_msg}");
@@ -121,12 +119,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['load_more'])){
     $limit = filter_input(INPUT_POST,"page_l",FILTER_SANITIZE_STRING);
     $offset = filter_input(INPUT_POST,"page_of",FILTER_SANITIZE_STRING);
 
-    if(isset($_POST['profile_ID'])) {
+    if(isset($_POST['profile_ID']) && $_POST['profile_ID'] != null) {
         $ProfileID = filter_input(INPUT_POST,"profile_ID",FILTER_SANITIZE_STRING);
         $json_msg = $postObject->get_profile_posts($ProfileID, $limit, $offset);
     }
-    else 
+    else { 
         $json_msg = $postObject->get_wall_posts($_SESSION['ses_user_signed_in'], $limit, $offset);
+    }
 }
 header("Content-type:application/json");
 echo json_encode($json_msg);

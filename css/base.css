@@ -934,3 +934,98 @@ span.stmreza {
     color: #303030;
     text-transform: uppercase;
 }
+/*------------------Popusti-----------------------*/
+.opis{
+    color: #fff;
+    top: 20px;
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition:.6s;
+    -ms-transition:.6s;
+    transition:.6s;
+    font-weight: bold;
+}
+
+.popusti:hover .opis{
+    visibility: visible;
+    -webkit-transition:.6s;
+    -ms-transition:.6s;
+    transition:.6s;
+    opacity: 1;
+}
+.popusti:hover .main{
+    opacity: 0;
+    -webkit-transition:.6s;
+    -ms-transition:.6s;
+    transition:.6s;
+}
+
+.wrapper{
+    margin-top:30px;
+    padding-top: 100px;
+}
+
+.drop-popust{
+    margin-left:40px;
+}
+
+.wrapper .box{
+    text-align: left;
+    margin-top:30px;
+    min-height: 500px;
+}
+
+.wrapper button{
+    font-weight: bolder;
+    padding: 7px 10px;
+    margin-top:15px;
+    margin-left:20px;
+    margin-right:20px;
+}
+
+.info-popust{
+    position: absolute;
+    bottom: 10px;
+    left: 20%;
+    right: 20%;
+}
+
+.discription{
+    padding-top:40px;
+}
+.discription i{
+    font-size: 0.8em;
+}
+
+.vrijednost-popust{
+    padding-top:30px;
+}
+
+.vrijednost-popust h2{
+    padding:25px 10px;
+    border:2px solid gray;
+    border-radius:100%;
+}
+
+.popusti{
+    margin-top: 5px;
+    border: 2px solid gray;
+    border-radius: 5px;
+    min-height: 200px;
+}
+
+.mix {
+  display: none;
+}
+
+#container{
+    width:60%;
+}
+
+.box button{
+    text-align: left;
+    padding: 3px 10%;
+}
+
+

@@ -33,14 +33,18 @@ class Post{
         return $data;
     }
 
-    public function get_profile_posts($user_id, $limit, $offset){       
-        $_checker = intval($this->baseObject->decrypt($_SESSION['ses_user_signed_in']));
-        $_user_id = intval($this->baseObject->decrypt($user_id));
+    public function get_profile_posts($user_id, $limit, $offset){      
+        $_checker = (int)$this->baseObject->decrypt($_SESSION['ses_user_signed_in']);
+        $_user_id = (int)$this->baseObject->decrypt($user_id);
 
-        $data = array();
-        
-        $query = "select * from friends where owner in ({$_checker},{$_user_id}) and friend in ({$_checker},{$_user_id}) and pending = 0";
-        $result = $this->baseObject->query("SELECT", $query);
+        $result = array(1);
+        $data = null;
+
+        if($_checker != $_user_id) {
+            $query = "select * from friends where owner in ({$_checker},{$_user_id}) and friend in ({$_checker},{$_user_id}) and pending = 0";
+            $result = $this->baseObject->query("SELECT", $query);            
+        }
+        echo $_user_id . "|" . $_checker;
 
         if(count($result) > 0) {
             $_limit = intval($limit);
